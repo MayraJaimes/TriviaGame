@@ -1,6 +1,9 @@
 var randomChoices;
 var questionHTML="";
 var remainSec="";
+var incorrectAnswers= 0;
+var correctAnswers = 0 ;
+var unansweredQuestions = 0;
 
 var randomizeArray = arr => arr.sort(() => Math.random() - 0.5);
 
@@ -62,6 +65,9 @@ var trivia = [
 	answer: "A poisoned apple"}
 ]
 
+$(".time").html("10 seconds");
+
+
 for (i=0; i<trivia.length; i++) {
 	randomChoices = randomizeArray(trivia[i].choices);
 		questionHTML += 
@@ -80,6 +86,7 @@ for (i=0; i<trivia.length; i++) {
 	
 $(".triviaPage").append(questionHTML);
 
+var questionNumber = $(this).closest("div").attr("data-question-num");
 var number = 10;
 var intervalId;
 
@@ -94,9 +101,15 @@ function decrement() {
       	if (number === 1) {
       		$(".time").html(number + " second")
       	}
-        if (number === 0) {
+
+       if (number === 0) {
         stop();
-    	}
+        unansweredQuestions ++;
+        $(".triviaPage").css("display", "none");
+		$(".timeOutPage").css("display", "block");
+      	setTimeout(function(){nextQuestion(questionNumber)}, 1000 * 1);
+    }
+    	
     	$(".questions-group").on("click", stop);
     }
 
@@ -119,34 +132,52 @@ $("#startButton").on("click", function() {
 $('.questions-group').on('click', 'button', function() {
 	var userPickedAnswer = $(this).text();
 	var rightanswer = $(this).closest("div").attr("data-answer");
-	var questionNumber = $(this).closest("div").attr("data-question-num");
+	questionNumber = $(this).closest("div").attr("data-question-num");
 
 	if (userPickedAnswer === rightanswer) {
+		correctAnswers ++;
 		$(".triviaPage").css("display", "none");
 		$(".rightAnswerPage").css("display", "block");
+      setTimeout(function(){nextQuestion(questionNumber)}, 1000 * 1);
 	}
 
 	if (userPickedAnswer != rightanswer) {
+		incorrectAnswers ++;
 		$(".triviaPage").css("display", "none");
 		$(".wrongAnswerPage").css("display", "block");
+      setTimeout(function(){nextQuestion(questionNumber)}, 1000 * 1);
 	}
-
-	if (number === 0) {
-		$(".triviaPage").css("display", "none");
-		$(".timeOutPage").css("display", "block");
-	}
+		
 });
 
 intervalId;
 
 function nextQuestion(number){
+	if (number != 7){
 	var nextNum = parseInt(number) + 1;
-	$("#question_" + number).hide();
+	var currNumber = parseInt(number);
+	$("#question_" + currNumber).hide();
 	$("#question_" + nextNum).show();
 	$(".triviaPage").css("display", "block");
+	$(".timeOutPage").css("display", "none");
+	$(".wrongAnswerPage").css("display", "none");
+	$(".rightAnswerPage").css("display", "none");
+	$(".endPage").css("display", "none");
 	reset();	
 	run();
+	}
+
+	else {
+		$(".wrongAnswerPage").css("display", "none");
+		$(".rightAnswerPage").css("display", "none");
+		$(".endPage").css("display", "block");
+	}
+
+	$(".numCorrectAnswers").html(correctAnswers);
+	$(".numIncorrectAnswers").html(incorrectAnswers);
+	$(".numUnanswered").html(unansweredQuestions);
 };
+
 
 
 //nextQuestion(questionNumber);
