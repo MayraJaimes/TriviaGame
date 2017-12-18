@@ -12,6 +12,12 @@ body {
 	min-height: 640px;
 }
 
+h2 {
+	font-size: 30px;
+	text-align: center;
+	margin-top: 30px;
+}
+
 h1 {
 	font-size: 50px;
 	text-align: center;
@@ -19,12 +25,6 @@ h1 {
 	color: white;
 	border: 3px white solid;
 	background-color: blue;
-}
-
-h2 {
-	font-size: 30px;
-	text-align: center;
-	margin-top: 30px;
 }
 
 #question {
@@ -85,7 +85,8 @@ button {
 	display: none;
 }
 
-.results {
+.results, .rightAnswerPage {
+	display: none;
 	width: 90%;
 	background-color: green;
 	margin: 30px auto;
@@ -103,6 +104,8 @@ img {
 	min-height: 300px;
 	margin: 20px 0;
 }
+
+
 
 
 
