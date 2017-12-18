@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+  	<title>Trivia</title>
+</head>
+<body>
+
+	<div class="container">
+		<h1>  Disney Trivia </h1>
+
+		<div class="startPage">
+		 	<button id="startButton">Click to Start</button>
+		</div>
+
+		<div class= "triviaPage">
+			<h2> Time Remaining: </h2>
+		</div>
+
+		<div class="wrongAnswerPage">
+			<h2> Time Remaining: </h2>
+			<p>	Nope! </p>
+			<p class="correctAnswer"> The correct answer was: </p>
+			<img src="" alt="">
+		</div>
+
+		<div class="rightAnswerPage">
+			<h2> Time Remaining: </h2>
+			<p>	You are correct! </p>
+			<img src="" alt="">
+		</div>
+
+		<div class="timeOutPage">
+			<h2> Time Remaining: </h2>
+
+			<div class="results">
+				<p>	You are out of time! </p>
+				<p class="correctAnswer"> The correct answer was: </p>
+				<img src="" alt="">
+			</div>
+		</div>
+
+		<div class="endPage">
+			<h2> Time Remaining: 0 Seconds </h2>
+			
+			<div class="results">
+				<p>All done, here is how you did!</p>
+				<p>Correct Answers: </p>
+				<p>Incorrect Answers: </p>
+				<p>Unanswered: </p>
+			</div>
+			
+			<button id="resetButton">Click to Start Over!</button>
+
+		</div>
+
+	</div>
+
+	<script type="text/javascript" src="assets/javascript/app.js"></script>
+
+</body>
+</html>

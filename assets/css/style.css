@@ -1,0 +1,109 @@
+body {
+	background-image: url("../images/DisneyBackground2.jpg");
+}
+
+
+.container {
+	border: 2px black solid;
+	width: 60%;
+	margin: 50px auto;
+	padding: 40px;
+	background-color: #A69851;
+	min-height: 640px;
+}
+
+h1 {
+	font-size: 50px;
+	text-align: center;
+	padding: 10px;
+	color: white;
+	border: 3px white solid;
+	background-color: blue;
+}
+
+h2 {
+	font-size: 30px;
+	text-align: center;
+	margin-top: 30px;
+}
+
+#question {
+	width: 90%;
+	background-color: pink;
+	margin: 30px auto;
+	border: 3px white solid;
+	font-size: 30px;
+	text-align: center;
+	color: white;
+	padding: 50px 10px 20px 10px;
+	min-height: 80px;
+}
+
+button {
+	width: 90%;
+	background-color: #3631A2;
+	margin: 20px auto;
+	display: block;
+	border: 3px white solid;
+	font-size: 30px;
+	text-align: center;
+	color: white;
+	padding: 5px;
+	min-height: 51px;
+}
+
+#startButton, #resetButton {
+	background-color: pink;
+	width: 50%;
+}
+
+.startPage {
+	display: block;
+}
+
+.triviaPage {
+	display: none;
+}
+
+.questions-group {
+	display: none;
+}
+
+.wrongAnswerPage {
+	display: none;
+}
+
+.rightAnswerPage {
+	display: none;
+}
+
+.timeOutPage {
+	display: none;
+}
+
+.endPage {
+	display: none;
+}
+
+.results {
+	width: 90%;
+	background-color: green;
+	margin: 30px auto;
+	border: 3px white solid;
+	font-size: 30px;
+	text-align: center;
+	color: white;
+	padding: 10px;
+	min-height: 80px;
+}
+
+img {
+	border: 3px white solid;
+	min-width: 300px;
+	min-height: 300px;
+	margin: 20px 0;
+}
+
+
+
+
