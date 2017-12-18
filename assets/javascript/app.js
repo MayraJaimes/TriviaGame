@@ -80,10 +80,40 @@ for (i=0; i<trivia.length; i++) {
 	
 $(".triviaPage").append(questionHTML);
 
+var number = 10;
+var intervalId;
+
+function run() {
+	clearInterval(intervalId);
+      intervalId = setInterval(decrement, 1000);
+    }
+
+function decrement() {
+      number--;
+      $(".time").html(number + " seconds")
+      	if (number === 1) {
+      		$(".time").html(number + " second")
+      	}
+        if (number === 0) {
+        stop();
+    	}
+    	$(".questions-group").on("click", stop);
+    }
+
+function stop() {
+	clearInterval(intervalId);
+    }
+
+function reset() {
+	number = 10;
+     $(".time").html(number);
+}
+
 $("#startButton").on("click", function() {
 	$(".startPage").css("display", "none");
 	$(".triviaPage").css("display", "block");
 	$("#question_0").show(); 
+	run();
 });
 
 $('.questions-group').on('click', 'button', function() {
@@ -101,19 +131,22 @@ $('.questions-group').on('click', 'button', function() {
 		$(".wrongAnswerPage").css("display", "block");
 	}
 
-	if (remainSec = 0) {
+	if (number === 0) {
 		$(".triviaPage").css("display", "none");
 		$(".timeOutPage").css("display", "block");
 	}
-})
+});
 
+intervalId;
 
 function nextQuestion(number){
 	var nextNum = parseInt(number) + 1;
 	$("#question_" + number).hide();
 	$("#question_" + nextNum).show();
-	$(".triviaPage").css("display", "none");
-}
+	$(".triviaPage").css("display", "block");
+	reset();	
+	run();
+};
 
 
 //nextQuestion(questionNumber);
