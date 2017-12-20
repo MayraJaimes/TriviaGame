@@ -34,8 +34,7 @@ h1 {
 	font-size: 30px;
 	text-align: center;
 	color: white;
-	padding: 50px 10px 20px 10px;
-	min-height: 80px;
+	padding: 40px 10px;
 }
 
 button {
@@ -91,25 +90,16 @@ button {
 }
 */
 
-#rightAnswerPage p {
-	display: block;
+
+.paragraphs {
+	width: 90%;
+	margin: 20px auto 0 auto;
+	border: 3px white solid;
+	font-size: 30px;
 	text-align: center;
-	background-color: green;
-
+	color: white;
+	padding: 20px 10px;
 }
-
-#wrongAnswerPage p{
-	background-color: red;
-}
-
-#timeOutPage p{
-	background-color: orange;
-}
-
-#results p{
-	background-color: blue;
-}
-
 
 img {
 	border: 3px white solid;
@@ -119,7 +109,32 @@ img {
 	margin: 30px auto;
 }
 
+#wrongAnswerPage .paragraphs {
+	background-color: red;
+}
 
+#rightAnswerPage .paragraphs {
+	background-color: green;
+}
+
+#timeOutPage .paragraphs {
+	background-color: orange;
+}
+
+#results .paragraphs {
+	background-color: blue;
+}
+
+#endPage .paragraphs {
+	background-color: violet;
+}
+
+
+.paragraphs p {
+	text-align: center;
+	font-size: 30px;
+
+}
 
 
 

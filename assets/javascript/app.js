@@ -150,7 +150,6 @@ function stop() {
 function reset() {
     number = 10;
     document.querySelector(".time").innerHTML = number;
-
 }
  
 //Start Button
@@ -164,31 +163,25 @@ document.getElementById("startButton").addEventListener("click", function(){
 //Choices Buttons
 $('.questions-group').on('click', 'button', function() {
     var userPickedAnswer = $(this).text();
-    console.log(userPickedAnswer);
     rightanswer = $('#answer_' + questionNumber).text().trim();
-    console.log(rightanswer);
     
 //Answer Correct
     if (userPickedAnswer === rightanswer) {
         correctAnswers++;
-        console.log(correctAnswers);
         insertImage();
-        console.log(insertImage());
-
         document.getElementById("triviaPage").style.display = "none";
         document.getElementById("rightAnswerPage").style.display = "block";
-        setTimeout(function() { nextQuestion(questionNumber) }, 1000 * 1);
+        setTimeout(function() { nextQuestion(questionNumber) }, 1000 * 2);
     }
 
 //Answer Incorrect
     if (userPickedAnswer != rightanswer) {
         incorrectAnswers++;
         insertImage();
-        console.log(insertImage());
         document.getElementById("triviaPage").style.display = "none";
         document.getElementById("wrongAnswerPage").style.display = "block";
         document.querySelector("#wrongAnswerPage .correctAnswer").innerHTML = rightanswer;
-        setTimeout(function() { nextQuestion(questionNumber) }, 1000 * 1);
+        setTimeout(function() { nextQuestion(questionNumber) }, 1000 * 2);
     }
 });
 
@@ -225,18 +218,10 @@ function timerEnd() {
     document.getElementById("triviaPage").style.display = "none";
     document.getElementById("timeOutPage").style.display = "block";
     document.querySelector("#timeOutPage .correctAnswer").innerHTML = rightanswer;
-    setTimeout(function() { nextQuestion(questionNumber) }, 1000 * 1);
+    setTimeout(function() { nextQuestion(questionNumber) }, 1000 * 2);
 };
 
 function insertImage(){
     questionImage = $('#image_' + questionNumber).text();
     $(".image").html(`<img src="assets/images/image${questionNumber}.jpg" alt="${rightanswer}">`);
-
-//    rightanswer = $('#answer_' + questionNumber).text();
-//${questionImage}
-
-
-                // <div id="image_${i}" class="imageSheet">
-                //     ${trivia[i].image}
-                // </div>
 }
