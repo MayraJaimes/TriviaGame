@@ -2,7 +2,6 @@ body {
 	background-image: url("../images/DisneyBackground2.jpg");
 }
 
-
 .container {
 	border: 2px black solid;
 	width: 60%;
@@ -27,7 +26,7 @@ h1 {
 	background-color: blue;
 }
 
-#question {
+.questionText {
 	width: 90%;
 	background-color: pink;
 	margin: 30px auto;
@@ -52,43 +51,36 @@ button {
 	min-height: 51px;
 }
 
-#startButton, #resetButton {
+#startButton, 
+#resetButton {
 	background-color: pink;
 	width: 50%;
 }
 
-.startPage {
+#startPage {
 	display: block;
 }
 
-.triviaPage {
+.questions-group,
+.answerSheet, 
+.imageSheet,
+#endPage,
+#timeOutPage,
+#rightAnswerPage,
+#wrongAnswerPage,
+#triviaPage {
 	display: none;
 }
 
-.questions-group {
+#wrongAnswerPage,
+#timeOutPage,
+#results, 
+#endPage,
+#rightAnswerPage {
 	display: none;
 }
 
-.wrongAnswerPage {
-	display: none;
-}
-
-.rightAnswerPage {
-	display: none;
-}
-
-.timeOutPage {
-	display: none;
-}
-
-.endPage {
-	display: none;
-}
-
-.results, .rightAnswerPage {
-	display: none;
-	width: 90%;
-	background-color: green;
+	/*width: 90%;
 	margin: 30px auto;
 	border: 3px white solid;
 	font-size: 30px;
@@ -97,12 +89,34 @@ button {
 	padding: 10px;
 	min-height: 80px;
 }
+*/
+
+#rightAnswerPage p {
+	display: block;
+	text-align: center;
+	background-color: green;
+
+}
+
+#wrongAnswerPage p{
+	background-color: red;
+}
+
+#timeOutPage p{
+	background-color: orange;
+}
+
+#results p{
+	background-color: blue;
+}
+
 
 img {
 	border: 3px white solid;
-	min-width: 300px;
-	min-height: 300px;
-	margin: 20px 0;
+	max-width: 300px;
+	max-height: 300px;
+	display: block;
+	margin: 30px auto;
 }
 
 

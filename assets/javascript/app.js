@@ -3,7 +3,10 @@ var questionHTML = "";
 var incorrectAnswers = 0;
 var correctAnswers = 0;
 var unansweredQuestions = 0;
-var rightanswer;
+var rightanswer = $('#answer_' + questionNumber).text();
+var number = 10;
+var intervalId;
+var questionNumber = 0;
 
 var randomizeArray = arr => arr.sort(() => Math.random() - 0.5);
 
@@ -12,9 +15,9 @@ var trivia = [{
         choices: ["Prince Eric",
             "Prince Phillip",
             "Prince Charming",
-            "Prince Joseph"
-        ],
-        answer: "Prince Eric"
+            "Prince Joseph"],
+        answer: "Prince Eric",
+        image: "question0.jpg"
     },
 
     {
@@ -22,9 +25,9 @@ var trivia = [{
         choices: ["Abu",
             "Donkey Kong",
             "Rafiki",
-            "Jack"
-        ],
-        answer: "Abu"
+            "Jack"],
+        answer: "Abu",
+        image: "image1.jpg"
     },
 
     {
@@ -32,19 +35,19 @@ var trivia = [{
         choices: ["Pluto",
             "Donald",
             "Bolt",
-            "Oliver"
-        ],
-        answer: "Pluto"
+            "Oliver"],
+        answer: "Pluto",
+        image: "image2.jpg"
     },
 
     {
-        question: "What are the names of the 7 dwarfs from the Disney movie 'Snow White and the Seven Dwarfs'?",
-        choices: ["Happy, Sleepy, Sneezy, Dopey, Grumpy, Bashful and Doc",
-            "Joyful, Lazy, Sneezy, Dopey, Grumpy, Bashful and Doc",
-            "Happy, Sleepy, Sneezy, Dopey, Moody, Bashful and Doc",
-            "Joyful, Sleepy, Sneezy, Dopey, Grumpy, Bashful and Doc"
-        ],
-        answer: "Happy, Sleepy, Sneezy, Dopey, Grumpy, Bashful and Doc"
+        question: "What is the name of one of the 7 dwarfs from the Disney movie 'Snow White and the Seven Dwarfs'?",
+        choices: ["Moody",
+            "Joyful",
+            "Lazy",
+            "Happy"],
+        answer: "Happy",
+        image: "image3.jpg"
     },
 
     {
@@ -52,9 +55,9 @@ var trivia = [{
         choices: ["Dalmatians",
             "Cinderella",
             "Sleeping Beauty",
-            "Lion King"
-        ],
-        answer: "Dalmatians"
+            "Lion King"],
+        answer: "Dalmatians",
+        image: "image4.jpg"
     },
 
     {
@@ -62,9 +65,9 @@ var trivia = [{
         choices: ["Turtles",
             "Sharks",
             "Seals",
-            "Dolphins"
-        ],
-        answer: "Turtles"
+            "Dolphins"],
+        answer: "Turtles",
+        image: "image5.jpg"
     },
 
     {
@@ -72,9 +75,9 @@ var trivia = [{
         choices: ["Andy",
             "Ryan",
             "Sid",
-            "Lenny"
-        ],
-        answer: "Andy"
+            "Lenny"],
+        answer: "Andy",
+        image: "image6.jpg"
     },
 
     {
@@ -84,20 +87,29 @@ var trivia = [{
             "A car accident",
             "A lost slipper"
         ],
-        answer: "A poisoned apple"
+        answer: "A poisoned apple",
+        image: "image7.jpg"
     }
 ]
 
 $(".time").html("10 seconds");
 
+//document.getElementById(id).innerHTML = new HTML
+
 for (i = 0; i < trivia.length; i++) {
     randomChoices = randomizeArray(trivia[i].choices);
     questionHTML +=
         `<div id="question_${i}" class="questions-group">
-				<div id="question">
-				${trivia[i].question}
+                <div id="answer_${i}" class="answerSheet">
+                    ${trivia[i].answer}
+                </div>
+                <div id="image_${i}" class="imageSheet">
+                    ${trivia[i].image}
+                </div>
+				<div class="questionText">
+				    ${trivia[i].question}
 				</div>
-				<div class="buttons" data-answer="${trivia[i].answer}" data-question-num="${i}"> 
+				<div class="buttons"> 
 					<button class="choiceButton">${trivia[i].choices[0]}</button>
 					<button class="choiceButton">${trivia[i].choices[1]}</button>
 					<button class="choiceButton">${trivia[i].choices[2]}</button>
@@ -106,11 +118,8 @@ for (i = 0; i < trivia.length; i++) {
 			</div>`
 }
 
-$(".triviaPage").append(questionHTML);
+$("#triviaPage").append(questionHTML);
 
-var number = 10;
-var intervalId;
-var questionNumber = 0;
 
 function run() {
     clearInterval(intervalId);
@@ -119,11 +128,14 @@ function run() {
 
 function decrement() {
     number--;
-    $(".time").html(number + " seconds");
+    $(".time").text(number + " seconds");
+
     $(".questions-group").on("click", stop);
+    
     if (number === 1) {
-        $(".time").html(number + " second")
+        document.querySelector(".time").innerHTML = (number + " second");
     }
+
 	if (number === 0) {
         stop();
         timerEnd();
@@ -134,41 +146,55 @@ function stop() {
     clearInterval(intervalId);
 }
 
+//Reset Function
 function reset() {
     number = 10;
-    $(".time").html(number);
-}
+    document.querySelector(".time").innerHTML = number;
 
-$("#startButton").on("click", function() {
-    $(".startPage").css("display", "none");
-    $(".triviaPage").css("display", "block");
-    $("#question_0").show();
+}
+ 
+//Start Button
+document.getElementById("startButton").addEventListener("click", function(){
+    document.getElementById("startPage").style.display = "none";
+    document.getElementById("triviaPage").style.display = "block";
+    document.getElementById("question_0").style.display = "block";
     run();
 });
 
+//Choices Buttons
 $('.questions-group').on('click', 'button', function() {
     var userPickedAnswer = $(this).text();
-    rightanswer = $(this).closest("div").attr("data-answer");
-    questionNumber = $(this).closest("div").attr("data-question-num");
-
+    console.log(userPickedAnswer);
+    rightanswer = $('#answer_' + questionNumber).text().trim();
+    console.log(rightanswer);
+    
+//Answer Correct
     if (userPickedAnswer === rightanswer) {
         correctAnswers++;
-        $(".triviaPage").css("display", "none");
-        $(".rightAnswerPage").css("display", "block");
+        console.log(correctAnswers);
+        insertImage();
+        console.log(insertImage());
+
+        document.getElementById("triviaPage").style.display = "none";
+        document.getElementById("rightAnswerPage").style.display = "block";
         setTimeout(function() { nextQuestion(questionNumber) }, 1000 * 1);
     }
 
+//Answer Incorrect
     if (userPickedAnswer != rightanswer) {
         incorrectAnswers++;
-        $(".triviaPage").css("display", "none");
-        $(".wrongAnswerPage").css("display", "block");
-        $(".correctAnswer").html(rightanswer);
+        insertImage();
+        console.log(insertImage());
+        document.getElementById("triviaPage").style.display = "none";
+        document.getElementById("wrongAnswerPage").style.display = "block";
+        document.querySelector("#wrongAnswerPage .correctAnswer").innerHTML = rightanswer;
         setTimeout(function() { nextQuestion(questionNumber) }, 1000 * 1);
     }
 });
 
 intervalId;
 
+//Going to next question
 function nextQuestion(number) {
     if (number != 7) {
         var nextNum = parseInt(number) + 1;
@@ -176,30 +202,41 @@ function nextQuestion(number) {
         var currNumber = parseInt(number);
         $("#question_" + currNumber).hide();
         $("#question_" + nextNum).show();
-        $(".triviaPage").css("display", "block");
-        $(".timeOutPage").css("display", "none");
-        $(".wrongAnswerPage").css("display", "none");
-        $(".rightAnswerPage").css("display", "none");
-        $(".endPage").css("display", "none");
+        document.getElementById("triviaPage").style.display = "block";
+        document.getElementById("timeOutPage").style.display = "none";
+        document.getElementById("wrongAnswerPage").style.display = "none";
+        document.getElementById("rightAnswerPage").style.display = "none";
+        document.getElementById("endPage").style.display = "none";
         reset();
         run();
     } else {
-        $(".wrongAnswerPage").css("display", "none");
-        $(".rightAnswerPage").css("display", "none");
-        $(".endPage").css("display", "block");
+        document.getElementById("wrongAnswerPage").style.display = "none";
+        document.getElementById("timeOutPage").style.display = "none";
+        document.getElementById("rightAnswerPage").style.display = "none";
+        document.getElementById("endPage").style.display = "block";
     }
-
-    $(".numCorrectAnswers").html(correctAnswers);
-    $(".numIncorrectAnswers").html(incorrectAnswers);
-    $(".numUnanswered").html(unansweredQuestions);
+    document.querySelector(".numCorrectAnswers").innerHTML = correctAnswers;
+    document.querySelector(".numIncorrectAnswers").innerHTML = incorrectAnswers;
+    document.querySelector(".numUnanswered").innerHTML = unansweredQuestions;
 };
 
 function timerEnd() {
     unansweredQuestions++;
-    var questionNum = $('#question_' + questionNumber);
-    rightanswer = questionNum.find('div[data-answer]').attr('data-answer');
-    $(".triviaPage").css("display", "none");
-    $(".timeOutPage").css("display", "block");
-    $(".correctAnswer").html(rightanswer);
+    document.getElementById("triviaPage").style.display = "none";
+    document.getElementById("timeOutPage").style.display = "block";
+    document.querySelector("#timeOutPage .correctAnswer").innerHTML = rightanswer;
     setTimeout(function() { nextQuestion(questionNumber) }, 1000 * 1);
-} 
+};
+
+function insertImage(){
+    questionImage = $('#image_' + questionNumber).text();
+    $(".image").html(`<img src="assets/images/image${questionNumber}.jpg" alt="${rightanswer}">`);
+
+//    rightanswer = $('#answer_' + questionNumber).text();
+//${questionImage}
+
+
+                // <div id="image_${i}" class="imageSheet">
+                //     ${trivia[i].image}
+                // </div>
+}
