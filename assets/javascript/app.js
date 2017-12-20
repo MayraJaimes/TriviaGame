@@ -7,6 +7,14 @@ var rightanswer = $('#answer_' + questionNumber).text();
 var number = 10;
 var intervalId;
 var questionNumber = 0;
+var getTriviaPage = document.getElementById("triviaPage");
+var getTimeOutPage = document.getElementById("timeOutPage");
+var getRightAnswerPage = document.getElementById("rightAnswerPage");
+var getEndPage = document.getElementById("endPage");
+var getWrongAnswerPage = document.getElementById("wrongAnswerPage");
+var getStartPage = document.getElementById("startPage");
+
+
 
 var randomizeArray = arr => arr.sort(() => Math.random() - 0.5);
 
@@ -92,10 +100,6 @@ var trivia = [{
     }
 ]
 
-$(".time").html("10 seconds");
-
-//document.getElementById(id).innerHTML = new HTML
-
 for (i = 0; i < trivia.length; i++) {
     randomChoices = randomizeArray(trivia[i].choices);
     questionHTML +=
@@ -119,7 +123,7 @@ for (i = 0; i < trivia.length; i++) {
 }
 
 $("#triviaPage").append(questionHTML);
-
+$(".time").html("10 seconds");
 
 function run() {
     clearInterval(intervalId);
@@ -129,13 +133,10 @@ function run() {
 function decrement() {
     number--;
     $(".time").text(number + " seconds");
-
     $(".questions-group").on("click", stop);
-    
     if (number === 1) {
         document.querySelector(".time").innerHTML = (number + " second");
     }
-
 	if (number === 0) {
         stop();
         timerEnd();
@@ -154,8 +155,8 @@ function reset() {
  
 //Start Button
 document.getElementById("startButton").addEventListener("click", function(){
-    document.getElementById("startPage").style.display = "none";
-    document.getElementById("triviaPage").style.display = "block";
+    getStartPage.style.display = "none";
+    getTriviaPage.style.display = "block";
     document.getElementById("question_0").style.display = "block";
     run();
 });
@@ -169,19 +170,19 @@ $('.questions-group').on('click', 'button', function() {
     if (userPickedAnswer === rightanswer) {
         correctAnswers++;
         insertImage();
-        document.getElementById("triviaPage").style.display = "none";
-        document.getElementById("rightAnswerPage").style.display = "block";
-        setTimeout(function() { nextQuestion(questionNumber) }, 1000 * 2);
+        getTriviaPage.style.display = "none";
+        getRightAnswerPage.style.display = "block";
+        setTimeout(function() {nextQuestion(questionNumber)}, 2000);
     }
 
 //Answer Incorrect
     if (userPickedAnswer != rightanswer) {
         incorrectAnswers++;
         insertImage();
-        document.getElementById("triviaPage").style.display = "none";
-        document.getElementById("wrongAnswerPage").style.display = "block";
+        getTriviaPage.style.display = "none";
+        getWrongAnswerPage.style.display = "block";
         document.querySelector("#wrongAnswerPage .correctAnswer").innerHTML = rightanswer;
-        setTimeout(function() { nextQuestion(questionNumber) }, 1000 * 2);
+        setTimeout(function() {nextQuestion(questionNumber)}, 2000);
     }
 });
 
@@ -195,18 +196,18 @@ function nextQuestion(number) {
         var currNumber = parseInt(number);
         $("#question_" + currNumber).hide();
         $("#question_" + nextNum).show();
-        document.getElementById("triviaPage").style.display = "block";
-        document.getElementById("timeOutPage").style.display = "none";
-        document.getElementById("wrongAnswerPage").style.display = "none";
-        document.getElementById("rightAnswerPage").style.display = "none";
-        document.getElementById("endPage").style.display = "none";
+        getTriviaPage.style.display = "block";
+        getTimeOutPage.style.display = "none";
+        getWrongAnswerPage.style.display = "none";
+        getRightAnswerPage.style.display = "none";
+        getEndPage.style.display = "none";
         reset();
         run();
     } else {
-        document.getElementById("wrongAnswerPage").style.display = "none";
-        document.getElementById("timeOutPage").style.display = "none";
-        document.getElementById("rightAnswerPage").style.display = "none";
-        document.getElementById("endPage").style.display = "block";
+        getWrongAnswerPage.style.display = "none";
+        getTimeOutPage.style.display = "none";
+        getRightAnswerPage.style.display = "none";
+        getEndPage.style.display = "block";
     }
     document.querySelector(".numCorrectAnswers").innerHTML = correctAnswers;
     document.querySelector(".numIncorrectAnswers").innerHTML = incorrectAnswers;
@@ -215,13 +216,12 @@ function nextQuestion(number) {
 
 function timerEnd() {
     unansweredQuestions++;
-    document.getElementById("triviaPage").style.display = "none";
-    document.getElementById("timeOutPage").style.display = "block";
+    getTriviaPage.style.display = "none";
+    getTimeOutPage.style.display = "block";
     document.querySelector("#timeOutPage .correctAnswer").innerHTML = rightanswer;
-    setTimeout(function() { nextQuestion(questionNumber) }, 1000 * 2);
+    setTimeout(function() {nextQuestion(questionNumber)}, 2000);
 };
 
 function insertImage(){
-    questionImage = $('#image_' + questionNumber).text();
     $(".image").html(`<img src="assets/images/image${questionNumber}.jpg" alt="${rightanswer}">`);
 }
