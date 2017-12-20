@@ -3,18 +3,16 @@ var questionHTML = "";
 var incorrectAnswers = 0;
 var correctAnswers = 0;
 var unansweredQuestions = 0;
-var rightanswer = $('#answer_' + questionNumber).text();
 var number = 10;
-var intervalId;
 var questionNumber = 0;
+var rightanswer;
+var intervalId;
 var getTriviaPage = document.getElementById("triviaPage");
 var getTimeOutPage = document.getElementById("timeOutPage");
 var getRightAnswerPage = document.getElementById("rightAnswerPage");
 var getEndPage = document.getElementById("endPage");
 var getWrongAnswerPage = document.getElementById("wrongAnswerPage");
 var getStartPage = document.getElementById("startPage");
-
-
 
 var randomizeArray = arr => arr.sort(() => Math.random() - 0.5);
 
@@ -215,10 +213,12 @@ function nextQuestion(number) {
 };
 
 function timerEnd() {
+    rightanswer = $('#answer_' + questionNumber).text().trim();
     unansweredQuestions++;
     getTriviaPage.style.display = "none";
     getTimeOutPage.style.display = "block";
     document.querySelector("#timeOutPage .correctAnswer").innerHTML = rightanswer;
+    console.log()
     setTimeout(function() {nextQuestion(questionNumber)}, 2000);
 };
 

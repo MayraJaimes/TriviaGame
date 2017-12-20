@@ -1,15 +1,18 @@
 body {
-	background-image: url("../images/DisneyBackground2.jpg");
+	background-image: url("../images/background2.png");
 }
 
 .container {
-	border: 2px black solid;
 	width: 60%;
 	margin: 50px auto;
 	padding: 40px;
 	padding-bottom: 0;
 	background-color: #A69851;
 	min-height: 640px;
+	background-image: url("../images/castleImage.jpg");
+	background-repeat: no-repeat;
+	background-position: -184px 100%;
+	background-color: #F4F4EC;
 }
 
 h2 {
@@ -29,18 +32,17 @@ h1 {
 
 .questionText {
 	width: 90%;
-	background-color: pink;
 	margin: 30px auto;
-	border: 3px white solid;
 	font-size: 30px;
 	text-align: center;
-	color: white;
+	color: #1F2E41;
 	padding: 40px 10px;
+	border-radius: 8px;
 }
 
 button {
-	width: 90%;
-	background-color: #3631A2;
+	width: 80%;
+	background-color: #797F8D;
 	margin: 20px auto;
 	display: block;
 	border: 3px white solid;
@@ -49,12 +51,27 @@ button {
 	color: white;
 	padding: 5px;
 	min-height: 51px;
+	border-radius: 8px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+button:hover {
+	background-color: white;
+    color: #3631A2;
 }
 
 #startButton, 
 #resetButton {
 	background-color: pink;
 	width: 50%;
+	border-radius: 8px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#startButton:hover,
+#resetButton:hover {
+	background-color: white;
+    color: pink;
 }
 
 #startPage {
@@ -100,15 +117,16 @@ button {
 	text-align: center;
 	color: white;
 	padding: 20px 10px;
+	border-radius: 8px;
 }
 
 img {
 	border: 3px white solid;
-
 	width: 300px;
 	height: 300px;
 	display: block;
 	margin: 30px auto;
+	border-radius: 8px;
 }
 
 #wrongAnswerPage .paragraphs {
