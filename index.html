@@ -5,23 +5,31 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
   	<title>Trivia</title>
 </head>
 <body>
 
+	<header>
+		<div class="title">
+			<h1>Disney Trivia</h1>
+		</div>
+
+		<div class="timeRecording">
+			<h2><span class="timer"> Timer: 10 Seconds/Question </span> </h2>	
+		</div>
+	</header>
+
 	<div class="container">
-		<h1>  Disney Trivia </h1>
 
 		<div id="startPage">
 		 	<button id="startButton">Click to Start</button>
 		</div>
 
 		<div id= "triviaPage">
-			<h2> Time Remaining: <span class="time"> </span> </h2>
 		</div>
 
 		<div id="wrongAnswerPage">
-			<h2> Time Remaining: <span class="time"> </span></h2>
 			<div class="paragraphs">
 				<p>	Nope! </p>
 				<p>The correct answer was: <span class= "correctAnswer"> </span> </p>
@@ -30,7 +38,6 @@
 		</div>
 
 		<div id="rightAnswerPage">
-			<h2> Time Remaining: <span class="time"> </span></h2>
 			<div class="paragraphs">
 				<p>	You are correct! </p>
 			</div>
@@ -38,7 +45,6 @@
 		</div>
 
 		<div id="timeOutPage">
-			<h2> Time Remaining: 0 Seconds </h2>
 			<div class="paragraphs">
 				<p>	You are out of time! </p>
 				<p> The correct answer was: <span class= "correctAnswer"> </span></p>
@@ -47,7 +53,6 @@
 		</div>
 
 		<div id="endPage">
-			<h2> Time Remaining: <span class="time"> </span></h2>
 			<div class="paragraphs">
 				<p>All done, here is how you did!</p>
 				<br>
@@ -60,6 +65,9 @@
 		</div>
 
 	</div>
+
+	<footer>
+	</footer>
 
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 

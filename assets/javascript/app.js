@@ -121,7 +121,7 @@ for (i = 0; i < trivia.length; i++) {
 }
 
 $("#triviaPage").append(questionHTML);
-$(".time").html("10 seconds");
+$(".timer").html("Time Remaining: 10 seconds");
 
 function run() {
     clearInterval(intervalId);
@@ -130,10 +130,10 @@ function run() {
 
 function decrement() {
     number--;
-    $(".time").text(number + " seconds");
+    $(".timer").text("Time Remaining: " + number + " seconds");
     $(".questions-group").on("click", stop);
     if (number === 1) {
-        document.querySelector(".time").innerHTML = (number + " second");
+        //document.querySelector(".timer").innerHTML = (number + " second");
     }
 	if (number === 0) {
         stop();
@@ -148,11 +148,12 @@ function stop() {
 //Reset Function
 function reset() {
     number = 10;
-    document.querySelector(".time").innerHTML = number;
+    $(".timer").text("Time Remaining: " + number + " seconds");
 }
  
 //Start Button
 document.getElementById("startButton").addEventListener("click", function(){
+    document.querySelector(".timer").style.display = "block";
     getStartPage.style.display = "none";
     getTriviaPage.style.display = "block";
     document.getElementById("question_0").style.display = "block";
