@@ -5,7 +5,9 @@ var correctAnswers = 0;
 var unansweredQuestions = 0;
 var number = 10;
 var questionNumber = 0;
+var questionCounter = 1;
 var rightanswer;
+var rightImage;
 var intervalId;
 var getTriviaPage = document.getElementById("triviaPage");
 var getTimeOutPage = document.getElementById("timeOutPage");
@@ -23,7 +25,7 @@ var trivia = [{
             "Prince Charming",
             "Prince Joseph"],
         answer: "Prince Eric",
-        image: "question0.jpg"
+        image: "image0.jpg"
     },
 
     {
@@ -117,6 +119,9 @@ for (i = 0; i < trivia.length; i++) {
 					<button class="choiceButton">${trivia[i].choices[2]}</button>
 					<button class="choiceButton">${trivia[i].choices[3]}</button>
 				</div>
+                <div class="questionCounter">
+                    Question ${questionCounter} out of 8
+                </div>
 			</div>`
 }
 
@@ -164,7 +169,7 @@ document.getElementById("startButton").addEventListener("click", function(){
 $('.questions-group').on('click', 'button', function() {
     var userPickedAnswer = $(this).text();
     rightanswer = $('#answer_' + questionNumber).text().trim();
-    
+ 
 //Answer Correct
     if (userPickedAnswer === rightanswer) {
         correctAnswers++;
@@ -187,7 +192,6 @@ $('.questions-group').on('click', 'button', function() {
 
 intervalId;
 
-//Going to next question
 function nextQuestion(number) {
     if (number != 7) {
         var nextNum = parseInt(number) + 1;
@@ -200,6 +204,7 @@ function nextQuestion(number) {
         getWrongAnswerPage.style.display = "none";
         getRightAnswerPage.style.display = "none";
         getEndPage.style.display = "none";
+        questionCounter = parseInt(questionNumber) + 1;
         reset();
         run();
     } else {
@@ -211,18 +216,23 @@ function nextQuestion(number) {
     document.querySelector(".numCorrectAnswers").innerHTML = correctAnswers;
     document.querySelector(".numIncorrectAnswers").innerHTML = incorrectAnswers;
     document.querySelector(".numUnanswered").innerHTML = unansweredQuestions;
+    $(".questionCounter").html(`Question ${questionCounter} out of 8`);
+
 };
 
 function timerEnd() {
     rightanswer = $('#answer_' + questionNumber).text().trim();
+    document.querySelector("#timeOutPage .correctAnswer").innerHTML = rightanswer;
     unansweredQuestions++;
     getTriviaPage.style.display = "none";
     getTimeOutPage.style.display = "block";
-    document.querySelector("#timeOutPage .correctAnswer").innerHTML = rightanswer;
-    console.log()
+    insertImage();
     setTimeout(function() {nextQuestion(questionNumber)}, 2000);
 };
 
 function insertImage(){
-    $(".image").html(`<img src="assets/images/image${questionNumber}.jpg" alt="${rightanswer}">`);
+    rightanswer = $('#answer_' + questionNumber).text().trim();
+    rightImage = $('#image_' + questionNumber).text().trim();
+    var correctImage = `<img src="assets/images/${rightImage}" alt="${rightanswer}"/>`;
+    $(".image").html(correctImage);
 }

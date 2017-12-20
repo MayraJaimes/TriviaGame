@@ -1,24 +1,23 @@
 html {
-	height: 100%;
 	font-family: 'Oswald', sans-serif;
 }
 
 body {
-	min-height: 100%;
+	height: 100%;
 	background-image: url("../images/background2.png");
 	position: relative;
 }
 
 header {
 	width: calc(100%-40px);
-    height: 80px;
+    min-height: 80px;
    	background-color: #328CC1;
     font-size: 50px;
 }
 
 h1 {
-text-align: center;
-	margin: 14px 0;
+	text-align: center;
+	margin: 15px 0;
 
 }
 		
@@ -33,13 +32,12 @@ text-align: center;
 	background-repeat: no-repeat;
 	background-position: -184px 100%;
 	background-color: #F4F4EC;
-	margin-bottom: 0;
 }
 
 h2 {
 	font-size: 30px;
 	text-align: center;
-	margin: 24px 0;
+	margin: 25px 0;
 }
 
 .questionText {
@@ -68,14 +66,14 @@ button {
 }
 
 button:hover {
-	background-color: white;
-    color: #1D2731;
+	background-image: url("../images/DisneyBackground2.jpg");
 }
 
 #startButton, 
 #resetButton {
 	background-color: #D9B310;
-	width: 50%;
+	width: 45%;
+	padding: 20px;
 	border-radius: 8px;
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
@@ -83,7 +81,6 @@ button:hover {
 #startButton:hover,
 #resetButton:hover {
 	background-color: white;
-    color: #3631A2;
 }
 
 #startPage {
@@ -124,10 +121,8 @@ button:hover {
 .paragraphs {
 	width: 90%;
 	margin: 20px auto 0 auto;
-	border: 3px white solid;
 	font-size: 30px;
 	text-align: center;
-	color: white;
 	padding: 20px 10px;
 	border-radius: 8px;
 }
@@ -142,30 +137,43 @@ img {
 }
 
 #wrongAnswerPage .paragraphs {
-	background-color: #8B0000;
+	color: #8B0000;
 }
 
 #rightAnswerPage .paragraphs {
-	background-color: #006400;
+	color: #006400;
 }
 
 #timeOutPage .paragraphs {
-	background-color: #B8860B;
-}
-
-#results .paragraphs {
-	background-color: #328CC1;
+	color: #B8860B;
 }
 
 #endPage .paragraphs {
-	background-color: #083C5D;
+	color: #083C5D;
 }
-
 
 .paragraphs p {
 	text-align: center;
 	font-size: 30px;
+}
 
+#startPage p {
+	text-align: center;
+	font-size: 30px;
+	width: 90%;
+	margin: 0px auto;
+	font-size: 30px;
+	text-align: center;
+	color: #1F2E41;
+	padding: 40px 10px;
+	border-radius: 8px;
+}
+
+#startPage p {
+	text-align: center;
+	margin: 20px;
+	font-size: 30px;
+	color: #1F2E41;
 }
 
 .timeRecording {
@@ -188,7 +196,12 @@ font-family: 'Marmelad', sans-serif;
 }
 
 
-
+.questionCounter {
+	margin-top: 60px;
+	color: #D9B310;
+	text-align: center;
+	font-size: 30px;
+}
 
 /*prussian blue
 #083C5D
