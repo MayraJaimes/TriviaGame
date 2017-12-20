@@ -9,30 +9,17 @@ body {
 	position: relative;
 }
 
-body::after{ 
-	content:''; 
-	display:block; 
-	height:100px; 
-}
-
 header {
 	width: calc(100%-40px);
-    height: 60px;
-	background-image: url("../images/background2.png");
-   	color: black;
+    height: 80px;
+   	background-color: #328CC1;
     font-size: 50px;
 }
 
 h1 {
 text-align: center;
-}
+	margin: 14px 0;
 
-footer {
-	position:absolute; 
-	bottom:0; 
-	width:100%; 
-	height:60px; 
-	background-color: #B41566;
 }
 		
 .container {
@@ -46,11 +33,13 @@ footer {
 	background-repeat: no-repeat;
 	background-position: -184px 100%;
 	background-color: #F4F4EC;
+	margin-bottom: 0;
 }
 
 h2 {
 	font-size: 30px;
 	text-align: center;
+	margin: 24px 0;
 }
 
 .questionText {
@@ -85,7 +74,7 @@ button:hover {
 
 #startButton, 
 #resetButton {
-	background-color: #05CEDA;
+	background-color: #D9B310;
 	width: 50%;
 	border-radius: 8px;
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -144,7 +133,7 @@ button:hover {
 }
 
 img {
-	border: 3px white solid;
+	border: 5px #328CC1 solid;
 	width: 300px;
 	height: 300px;
 	display: block;
@@ -153,23 +142,23 @@ img {
 }
 
 #wrongAnswerPage .paragraphs {
-	background-color: red;
+	background-color: #8B0000;
 }
 
 #rightAnswerPage .paragraphs {
-	background-color: green;
+	background-color: #006400;
 }
 
 #timeOutPage .paragraphs {
-	background-color: orange;
+	background-color: #B8860B;
 }
 
 #results .paragraphs {
-	background-color: blue;
+	background-color: #328CC1;
 }
 
 #endPage .paragraphs {
-	background-color: violet;
+	background-color: #083C5D;
 }
 
 
@@ -180,19 +169,25 @@ img {
 }
 
 .timeRecording {
-	width: 40%;
+	width: 30%;
 	height: 100%;
 	float: right;
-	background-color: #328CC1;
+	background-color: #083C5D;
+	color: white;
+		border-left: 3px white solid;
+
 }
 
 .title {
-	font-family: 'Oswald', sans-serif;
-	width: 40%;
+font-family: 'Marmelad', sans-serif;
+	width: 30%;
 	height: 100%;
 	float: left;
 	background-color: #328CC1;
+	color: white;
 }
+
+
 
 
 /*prussian blue
