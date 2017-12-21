@@ -193,6 +193,7 @@ function startGame () {
     });
 
     intervalId;
+
 };
 
 function nextQuestion(number) {
@@ -208,19 +209,22 @@ function nextQuestion(number) {
         getRightAnswerPage.style.display = "none";
         getEndPage.style.display = "none";
         questionCounter = parseInt(questionNumber) + 1;
+            $(".questionCounter").html(`Question ${questionCounter} out of 8`);
+
         reset();
         run();
+
     } else {
         getWrongAnswerPage.style.display = "none";
         getTimeOutPage.style.display = "none";
         getRightAnswerPage.style.display = "none";
         getEndPage.style.display = "block";
+        $(".numCorrectAnswers").text(correctAnswers);
+        $(".numIncorrectAnswers").text(incorrectAnswers);
+        $(".numUnanswered").text(unansweredQuestions);
+        resetGame();
     }
-    document.querySelector(".numCorrectAnswers").innerHTML = correctAnswers;
-    document.querySelector(".numIncorrectAnswers").innerHTML = incorrectAnswers;
-    document.querySelector(".numUnanswered").innerHTML = unansweredQuestions;
-    $(".questionCounter").html(`Question ${questionCounter} out of 8`);
-
+    
 };
 
 function timerEnd() {
@@ -241,12 +245,33 @@ function insertImage(){
 }
 
 function resetGame () {
+    randomChoices;
+    questionHTML = "";
     incorrectAnswers = 0;
     correctAnswers = 0;
     unansweredQuestions = 0;
     number = 10;
     questionNumber = 0;
     questionCounter = 1;
+    rightanswer;
+    rightImage;
+    intervalId;
+    getTriviaPage = document.getElementById("triviaPage");
+    getTimeOutPage = document.getElementById("timeOutPage");
+    getRightAnswerPage = document.getElementById("rightAnswerPage");
+    getEndPage = document.getElementById("endPage");
+    getWrongAnswerPage = document.getElementById("wrongAnswerPage");
+    getStartPage = document.getElementById("startPage");
+
+    randomizeArray = arr => arr.sort(() => Math.random() - 0.5);
+
+    $('#resetButton').on('click', function() {
+        getEndPage.style.display = "none";
+        getStartPage.style.display = "block";
+        // $("#triviaPage").append(questionHTML);
+        $(".timer").html("Time Remaining: 10 seconds");
+        startGame();
+     });
 }
 
 startGame();
