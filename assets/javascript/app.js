@@ -245,30 +245,15 @@ function insertImage(){
 }
 
 function resetGame () {
-    randomChoices;
-    questionHTML = "";
     incorrectAnswers = 0;
     correctAnswers = 0;
     unansweredQuestions = 0;
     number = 10;
     questionNumber = 0;
     questionCounter = 1;
-    rightanswer;
-    rightImage;
-    intervalId;
-    getTriviaPage = document.getElementById("triviaPage");
-    getTimeOutPage = document.getElementById("timeOutPage");
-    getRightAnswerPage = document.getElementById("rightAnswerPage");
-    getEndPage = document.getElementById("endPage");
-    getWrongAnswerPage = document.getElementById("wrongAnswerPage");
-    getStartPage = document.getElementById("startPage");
-
-    randomizeArray = arr => arr.sort(() => Math.random() - 0.5);
-
     $('#resetButton').on('click', function() {
         getEndPage.style.display = "none";
         getStartPage.style.display = "block";
-        // $("#triviaPage").append(questionHTML);
         $(".timer").html("Time Remaining: 10 seconds");
         startGame();
      });
