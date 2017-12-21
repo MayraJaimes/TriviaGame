@@ -155,42 +155,45 @@ function reset() {
     number = 10;
     $(".timer").text("Time Remaining: " + number + " seconds");
 }
+
  
-//Start Button
-document.getElementById("startButton").addEventListener("click", function(){
-    document.querySelector(".timer").style.display = "block";
-    getStartPage.style.display = "none";
-    getTriviaPage.style.display = "block";
-    document.getElementById("question_0").style.display = "block";
-    run();
-});
+function startGame () {
 
-//Choices Buttons
-$('.questions-group').on('click', 'button', function() {
-    var userPickedAnswer = $(this).text();
-    rightanswer = $('#answer_' + questionNumber).text().trim();
- 
-//Answer Correct
-    if (userPickedAnswer === rightanswer) {
-        correctAnswers++;
-        insertImage();
-        getTriviaPage.style.display = "none";
-        getRightAnswerPage.style.display = "block";
-        setTimeout(function() {nextQuestion(questionNumber)}, 2000);
-    }
+    document.getElementById("startButton").addEventListener("click", function(){
+        document.querySelector(".timer").style.display = "block";
+        getStartPage.style.display = "none";
+        getTriviaPage.style.display = "block";
+        document.getElementById("question_0").style.display = "block";
+        run();
+    });
 
-//Answer Incorrect
-    if (userPickedAnswer != rightanswer) {
-        incorrectAnswers++;
-        insertImage();
-        getTriviaPage.style.display = "none";
-        getWrongAnswerPage.style.display = "block";
-        document.querySelector("#wrongAnswerPage .correctAnswer").innerHTML = rightanswer;
-        setTimeout(function() {nextQuestion(questionNumber)}, 2000);
-    }
-});
+    //Choices Buttons
+    $('.questions-group').on('click', 'button', function() {
+        var userPickedAnswer = $(this).text();
+        rightanswer = $('#answer_' + questionNumber).text().trim();
+     
+    //Answer Correct
+        if (userPickedAnswer === rightanswer) {
+            correctAnswers++;
+            insertImage();
+            getTriviaPage.style.display = "none";
+            getRightAnswerPage.style.display = "block";
+            setTimeout(function() {nextQuestion(questionNumber)}, 2000);
+        }
 
-intervalId;
+    //Answer Incorrect
+        if (userPickedAnswer != rightanswer) {
+            incorrectAnswers++;
+            insertImage();
+            getTriviaPage.style.display = "none";
+            getWrongAnswerPage.style.display = "block";
+            document.querySelector("#wrongAnswerPage .correctAnswer").innerHTML = rightanswer;
+            setTimeout(function() {nextQuestion(questionNumber)}, 2000);
+        }
+    });
+
+    intervalId;
+};
 
 function nextQuestion(number) {
     if (number != 7) {
@@ -236,3 +239,14 @@ function insertImage(){
     var correctImage = `<img src="assets/images/${rightImage}" alt="${rightanswer}"/>`;
     $(".image").html(correctImage);
 }
+
+function resetGame () {
+    incorrectAnswers = 0;
+    correctAnswers = 0;
+    unansweredQuestions = 0;
+    number = 10;
+    questionNumber = 0;
+    questionCounter = 1;
+}
+
+startGame();

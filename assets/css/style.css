@@ -10,7 +10,7 @@ body {
 
 header {
 	width: calc(100%-40px);
-    min-height: 80px;
+    height: 80px;
    	background-color: #328CC1;
     font-size: 50px;
 }
@@ -158,37 +158,30 @@ img {
 }
 
 #startPage p {
-	text-align: center;
 	font-size: 30px;
 	width: 90%;
 	margin: 0px auto;
 	font-size: 30px;
 	text-align: center;
-	color: #1F2E41;
 	padding: 40px 10px;
 	border-radius: 8px;
-}
-
-#startPage p {
-	text-align: center;
 	margin: 20px;
-	font-size: 30px;
+	margin-top: 0px;
 	color: #1F2E41;
+	padding-bottom: 0;
 }
 
 .timeRecording {
-	width: 30%;
+	width: 48%;
 	height: 100%;
 	float: right;
 	background-color: #083C5D;
 	color: white;
-		border-left: 3px white solid;
-
 }
 
 .title {
-font-family: 'Marmelad', sans-serif;
-	width: 30%;
+	font-family: 'Marmelad', sans-serif;
+	width: 48%;
 	height: 100%;
 	float: left;
 	background-color: #328CC1;
