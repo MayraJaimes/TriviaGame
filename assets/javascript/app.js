@@ -156,21 +156,31 @@ function reset() {
     $(".timer").text("Time Remaining: " + number + " seconds");
 }
 
- 
+document.getElementById("startButton").addEventListener("click", startGame);
+
 function startGame () {
+    hideAllQuestions();
+    document.querySelector(".timer").style.display = "block";
+    getStartPage.style.display = "none";
+    getTriviaPage.style.display = "block";
+    $(".questionCounter").html(`Question ${questionCounter} out of 8`);
+    document.getElementById("question_0").style.display = "block";
+    run();
+    intervalId;
+};
 
-    document.getElementById("startButton").addEventListener("click", function(){
-        document.querySelector(".timer").style.display = "block";
-        getStartPage.style.display = "none";
-        getTriviaPage.style.display = "block";
-        document.getElementById("question_0").style.display = "block";
-        run();
-    });
+function hideAllQuestions() {
+    debugger;
+    for (i=0; i<trivia.length; i++) {
+        $('#question_' + i).hide();
+    }
+}
 
-    //Choices Buttons
+//Choices Buttons
     $('.questions-group').on('click', 'button', function() {
         var userPickedAnswer = $(this).text();
-        rightanswer = $('#answer_' + questionNumber).text().trim();
+        rightanswer = $('#answer_' + questionNumber).text().trim();            $(".questionCounter").html(`Question ${questionCounter} out of 8`);
+        debugger;
      
     //Answer Correct
         if (userPickedAnswer === rightanswer) {
@@ -192,10 +202,6 @@ function startGame () {
         }
     });
 
-    intervalId;
-
-};
-
 function nextQuestion(number) {
     if (number != 7) {
         var nextNum = parseInt(number) + 1;
@@ -210,11 +216,11 @@ function nextQuestion(number) {
         getEndPage.style.display = "none";
         questionCounter = parseInt(questionNumber) + 1;
             $(".questionCounter").html(`Question ${questionCounter} out of 8`);
-
         reset();
         run();
 
     } else {
+        getTriviaPage.style.display = "none";
         getWrongAnswerPage.style.display = "none";
         getTimeOutPage.style.display = "none";
         getRightAnswerPage.style.display = "none";
@@ -222,9 +228,10 @@ function nextQuestion(number) {
         $(".numCorrectAnswers").text(correctAnswers);
         $(".numIncorrectAnswers").text(incorrectAnswers);
         $(".numUnanswered").text(unansweredQuestions);
-        resetGame();
-    }
-    
+        $('#resetButton').on('click', function() {
+            resetGame();
+     });
+    }   
 };
 
 function timerEnd() {
@@ -251,12 +258,9 @@ function resetGame () {
     number = 10;
     questionNumber = 0;
     questionCounter = 1;
-    $('#resetButton').on('click', function() {
-        getEndPage.style.display = "none";
-        getStartPage.style.display = "block";
-        $(".timer").html("Time Remaining: 10 seconds");
-        startGame();
-     });
+    getEndPage.style.display = "none";
+    getStartPage.style.display = "block";
+    $(".timer").html("Time Remaining: 10 seconds");
+    startGame();
 }
 
-startGame();
