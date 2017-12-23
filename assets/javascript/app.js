@@ -199,7 +199,6 @@ $(document).ready(function() {
             getEndPage.querySelector(".numCorrectAnswers").innerHTML = correctAnswers;
             getEndPage.querySelector(".numIncorrectAnswers").innerHTML = incorrectAnswers;
             getEndPage.querySelector(".numUnanswered").innerHTML = unansweredQuestions;
-            getResetButton.addEventListener("click", resetGame);
          };   
     };
 
@@ -256,6 +255,9 @@ $(document).ready(function() {
             setTimeout(function() {nextQuestion(questionNumber)}, 2000);
         }
     });
+
+    getResetButton.addEventListener("click", resetGame);
+
 });
 
 
