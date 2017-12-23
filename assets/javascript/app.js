@@ -16,6 +16,7 @@ $(document).ready(function() {
     var getEndPage = document.getElementById("endPage");
     var getWrongAnswerPage = document.getElementById("wrongAnswerPage");
     var getStartPage = document.getElementById("startPage");
+    var getTimer = document.getElementById("timer");
 
     var randomizeArray = arr => arr.sort(() => Math.random() - 0.5);
 
@@ -126,8 +127,9 @@ $(document).ready(function() {
     			</div>`
     }
 
-    $("#triviaPage").append(questionHTML);
-    $(".timer").html("Time Remaining: 10 seconds");
+    getTriviaPage.innerHTML = questionHTML;
+
+    $("#timer").html("Time Remaining: 10 seconds");
 
     function run() {
         clearInterval(intervalId);
@@ -136,10 +138,10 @@ $(document).ready(function() {
 
     function decrement() {
         number--;
-        $(".timer").text("Time Remaining: " + number + " seconds");
+        getTimer.innerHTML = "Time Remaining: " + number + " seconds";
         $(".questions-group").on("click", stop);
         if (number === 1) {
-            //document.querySelector(".timer").innerHTML = (number + " second");
+            //document.querySelector("timer").innerHTML = (number + " second");
         }
     	if (number === 0) {
             stop();
@@ -154,14 +156,14 @@ $(document).ready(function() {
     //Reset Function
     function reset() {
         number = 10;
-        $(".timer").text("Time Remaining: " + number + " seconds");
+        getTimer.innerHTML = "Time Remaining: " + number + " seconds";
     }
 
     document.getElementById("startButton").addEventListener("click", startGame);
 
     function startGame () {
         hideAllQuestions();
-        document.querySelector(".timer").style.display = "block";
+        getTimer.style.display = "block";
         getStartPage.style.display = "none";
         getTriviaPage.style.display = "block";
         $(".questionCounter").html(`Question ${questionCounter} out of 8`);
@@ -171,7 +173,6 @@ $(document).ready(function() {
     };
 
     function hideAllQuestions() {
-        debugger;
         for (i=0; i<trivia.length; i++) {
             $('#question_' + i).hide();
         }
@@ -181,7 +182,6 @@ $(document).ready(function() {
         $('.questions-group').on('click', 'button', function() {
             var userPickedAnswer = $(this).text();
             rightanswer = $('#answer_' + questionNumber).text().trim();            $(".questionCounter").html(`Question ${questionCounter} out of 8`);
-            debugger;
          
         //Answer Correct
             if (userPickedAnswer === rightanswer) {
@@ -216,7 +216,7 @@ $(document).ready(function() {
             getRightAnswerPage.style.display = "none";
             getEndPage.style.display = "none";
             questionCounter = parseInt(questionNumber) + 1;
-                $(".questionCounter").html(`Question ${questionCounter} out of 8`);
+            $(".questionCounter").html(`Question ${questionCounter} out of 8`);
             reset();
             run();
 
@@ -261,7 +261,7 @@ $(document).ready(function() {
         questionCounter = 1;
         getEndPage.style.display = "none";
         getStartPage.style.display = "block";
-        $(".timer").html("Time Remaining: 10 seconds");
+        $("#timer").html("Time Remaining: 10 seconds");
         startGame();
     }
 
