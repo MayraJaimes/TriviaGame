@@ -17,6 +17,8 @@ $(document).ready(function() {
     var getWrongAnswerPage = document.getElementById("wrongAnswerPage");
     var getStartPage = document.getElementById("startPage");
     var getTimer = document.getElementById("timer");
+    var getResetButton = document.getElementById("resetButton");
+    var getStartButton = document.getElementById("startButton");
 
     var randomizeArray = arr => arr.sort(() => Math.random() - 0.5);
 
@@ -128,8 +130,7 @@ $(document).ready(function() {
     }
 
     getTriviaPage.innerHTML = questionHTML;
-
-    $("#timer").html("Time Remaining: 10 seconds");
+    getTimer.innerHTML = "Time Remaining: 10 seconds";
 
     function run() {
         clearInterval(intervalId);
@@ -140,9 +141,6 @@ $(document).ready(function() {
         number--;
         getTimer.innerHTML = "Time Remaining: " + number + " seconds";
         $(".questions-group").on("click", stop);
-        if (number === 1) {
-            //document.querySelector("timer").innerHTML = (number + " second");
-        }
     	if (number === 0) {
             stop();
             timerEnd();
@@ -153,13 +151,10 @@ $(document).ready(function() {
         clearInterval(intervalId);
     }
 
-    //Reset Function
     function reset() {
         number = 10;
         getTimer.innerHTML = "Time Remaining: " + number + " seconds";
     }
-
-    document.getElementById("startButton").addEventListener("click", startGame);
 
     function startGame () {
         hideAllQuestions();
@@ -176,32 +171,7 @@ $(document).ready(function() {
         for (i=0; i<trivia.length; i++) {
             $('#question_' + i).hide();
         }
-    }
-
-    //Choices Buttons
-        $('.questions-group').on('click', 'button', function() {
-            var userPickedAnswer = $(this).text();
-            rightanswer = $('#answer_' + questionNumber).text().trim();            $(".questionCounter").html(`Question ${questionCounter} out of 8`);
-         
-        //Answer Correct
-            if (userPickedAnswer === rightanswer) {
-                correctAnswers++;
-                insertImage();
-                getTriviaPage.style.display = "none";
-                getRightAnswerPage.style.display = "block";
-                setTimeout(function() {nextQuestion(questionNumber)}, 2000);
-            }
-
-        //Answer Incorrect
-            if (userPickedAnswer != rightanswer) {
-                incorrectAnswers++;
-                insertImage();
-                getTriviaPage.style.display = "none";
-                getWrongAnswerPage.style.display = "block";
-                document.querySelector("#wrongAnswerPage .correctAnswer").innerHTML = rightanswer;
-                setTimeout(function() {nextQuestion(questionNumber)}, 2000);
-            }
-        });
+    }        
 
     function nextQuestion(number) {
         if (number != 7) {
@@ -229,15 +199,14 @@ $(document).ready(function() {
             $(".numCorrectAnswers").text(correctAnswers);
             $(".numIncorrectAnswers").text(incorrectAnswers);
             $(".numUnanswered").text(unansweredQuestions);
-            $('#resetButton').on('click', function() {
-                resetGame();
-         });
-        }   
+            getResetButton.addEventListener("click", resetGame);
+         };
+         
     };
 
     function timerEnd() {
         rightanswer = $('#answer_' + questionNumber).text().trim();
-        document.querySelector("#timeOutPage .correctAnswer").innerHTML = rightanswer;
+        getTimeOutPage.querySelector(".correctAnswer").innerHTML = rightanswer;
         unansweredQuestions++;
         getTriviaPage.style.display = "none";
         getTimeOutPage.style.display = "block";
@@ -261,10 +230,33 @@ $(document).ready(function() {
         questionCounter = 1;
         getEndPage.style.display = "none";
         getStartPage.style.display = "block";
-        $("#timer").html("Time Remaining: 10 seconds");
+        getTimer.innerHTML = "Time Remaining: 10 seconds";
         startGame();
     }
 
+    getStartButton.addEventListener("click", startGame);
+
+    $('.questions-group').on('click', 'button', function() {
+        var userPickedAnswer = $(this).text();
+        rightanswer = $('#answer_' + questionNumber).text().trim();            $(".questionCounter").html(`Question ${questionCounter} out of 8`);
+     
+        if (userPickedAnswer === rightanswer) {
+            correctAnswers++;
+            insertImage();
+            getTriviaPage.style.display = "none";
+            getRightAnswerPage.style.display = "block";
+            setTimeout(function() {nextQuestion(questionNumber)}, 2000);
+        }
+
+        if (userPickedAnswer != rightanswer) {
+            incorrectAnswers++;
+            insertImage();
+            getTriviaPage.style.display = "none";
+            getWrongAnswerPage.style.display = "block";
+            getWrongAnswerPage.querySelector(".correctAnswer").innerHTML = rightanswer;
+            setTimeout(function() {nextQuestion(questionNumber)}, 2000);
+        }
+    });
 });
 
 
