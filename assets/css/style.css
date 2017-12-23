@@ -103,18 +103,6 @@ button:hover {
 	display: none;
 }
 
-	/*width: 90%;
-	margin: 30px auto;
-	border: 3px white solid;
-	font-size: 30px;
-	text-align: center;
-	color: white;
-	padding: 10px;
-	min-height: 80px;
-}
-*/
-
-
 .paragraphs {
 	width: 90%;
 	margin: 20px auto 0 auto;
@@ -184,7 +172,6 @@ img {
 	background-color: #328CC1;
 	color: white;
 }
-
 
 .questionCounter {
 	margin-top: 60px;
