@@ -196,12 +196,11 @@ $(document).ready(function() {
             getTimeOutPage.style.display = "none";
             getRightAnswerPage.style.display = "none";
             getEndPage.style.display = "block";
-            $(".numCorrectAnswers").text(correctAnswers);
-            $(".numIncorrectAnswers").text(incorrectAnswers);
-            $(".numUnanswered").text(unansweredQuestions);
+            getEndPage.querySelector(".numCorrectAnswers").innerHTML = correctAnswers;
+            getEndPage.querySelector(".numIncorrectAnswers").innerHTML = incorrectAnswers;
+            getEndPage.querySelector(".numUnanswered").innerHTML = unansweredQuestions;
             getResetButton.addEventListener("click", resetGame);
-         };
-         
+         };   
     };
 
     function timerEnd() {
