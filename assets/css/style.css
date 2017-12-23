@@ -4,26 +4,29 @@ html {
 
 body {
 	background-image: url("../images/background2.png");
-	position: relative;
+	text-align: center;
 }
 
 header {
     height: 70px;
    	background-color: #328CC1;
-    font-size: 50px;
 }
 
 h1 {
-	text-align: center;
+	font-size: 50px;
 	margin: 8px 0;
+	font-family: 'Marmelad', sans-serif;
+	width: 48%;
+	height: 100%;
+	float: left;
+	background-color: #328CC1;
+	color: white;
 }
 		
 .container {
-	position: relative;
 	width: 60%;
 	margin: 50px auto;
-	padding: 40px;
-	padding-bottom: 0;
+	padding: 40px 40px 0 40px;
 	min-height: 620px;
 	background-image: url("../images/castleImage.jpg");
 	background-repeat: no-repeat;
@@ -33,15 +36,37 @@ h1 {
 
 h2 {
 	font-size: 30px;
-	text-align: center;
-	margin: 20px 0;
+	margin: 20px;
+}
+
+h3 {
+	font-size: 40px;
+	margin: 20px;
+}
+
+h4 {
+	font-size: 40px;
+	margin-bottom: 20px;
+}
+
+.questionCounter {
+	margin-top: 60px;
+	color: #D9B310;
+	font-size: 30px;
+}
+
+.timeRecording {
+	width: 48%;
+	height: 100%;
+	float: right;
+	background-color: #083C5D;
+	color: white;
 }
 
 .questionText {
 	width: 90%;
 	margin: 0px auto;
-	font-size: 30px;
-	text-align: center;
+	font-size: 35px;
 	color: #1F2E41;
 	padding: 40px 10px;
 	border-radius: 8px;
@@ -53,7 +78,6 @@ button {
 	margin: 20px auto;
 	display: block;
 	font-size: 30px;
-	text-align: center;
 	color: white;
 	padding: 10px;
 	min-height: 51px;
@@ -69,21 +93,15 @@ button:hover {
 #startButton, 
 #resetButton {
 	background-color: #D9B310;
-	width: 45%;
+	width: 50%;
 	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-#startButton:hover,
-#resetButton:hover {
-	background-color: white;
 }
 
 #startPage {
 	display: block;
 }
 
+#results, 
 .questions-group,
 .answerSheet, 
 .imageSheet,
@@ -95,87 +113,42 @@ button:hover {
 	display: none;
 }
 
-#wrongAnswerPage,
-#timeOutPage,
-#results, 
-#endPage,
-#rightAnswerPage {
-	display: none;
-}
-
-.paragraphs {
-	width: 90%;
-	margin: 20px auto 0 auto;
-	font-size: 30px;
-	text-align: center;
-	padding: 20px 10px;
-	border-radius: 8px;
-}
-
 img {
-	border: 5px #328CC1 solid;
+	border: 3px #328CC1 solid;
 	width: 300px;
 	height: 300px;
 	display: block;
-	margin: 30px auto;
+	margin: 20px auto;
 	border-radius: 8px;
 }
 
-#wrongAnswerPage .paragraphs {
+#wrongAnswerPage .content {
 	color: #8B0000;
 }
 
-#rightAnswerPage .paragraphs {
+#rightAnswerPage .content {
 	color: #006400;
 }
 
-#timeOutPage .paragraphs {
+#timeOutPage .content {
 	color: #B8860B;
 }
 
-#endPage .paragraphs {
+#endPage .content {
 	color: #083C5D;
 }
 
-.paragraphs p {
-	text-align: center;
+.content {
+	width: 90%;
+	margin: 20px auto;
 	font-size: 30px;
+	padding: 20px 10px;
 }
 
 #startPage p {
 	font-size: 30px;
 	width: 90%;
 	margin: 0px auto;
-	font-size: 30px;
-	text-align: center;
-	padding: 40px 10px;
-	border-radius: 8px;
-	margin: 20px;
-	margin-top: 0px;
+	padding: 40px 10px 0px 10px;
 	color: #1F2E41;
-	padding-bottom: 0;
-}
-
-.timeRecording {
-	width: 48%;
-	height: 100%;
-	float: right;
-	background-color: #083C5D;
-	color: white;
-}
-
-.title {
-	font-family: 'Marmelad', sans-serif;
-	width: 48%;
-	height: 100%;
-	float: left;
-	background-color: #328CC1;
-	color: white;
-}
-
-.questionCounter {
-	margin-top: 60px;
-	color: #D9B310;
-	text-align: center;
-	font-size: 30px;
 }
