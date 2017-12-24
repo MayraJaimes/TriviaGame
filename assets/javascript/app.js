@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var randomChoices;
-    var questionHTML = "";
+    var randomQuestions;
     var incorrectAnswers = 0;
     var correctAnswers = 0;
     var unansweredQuestions = 0;
@@ -19,7 +19,6 @@ $(document).ready(function() {
     var getWrongAnswerPage = document.getElementById("wrongAnswerPage");
     var getEndPage = document.getElementById("endPage");
     var getResetButton = document.getElementById("resetButton");
-    var randomizeArray = arr => arr.sort(() => Math.random() - 0.5);
     var trivia = [{
         question: "In Disney's 'The Little Mermaid' who does Ariel fall in love with?",
         choices: ["Prince Eric",
@@ -95,33 +94,44 @@ $(document).ready(function() {
         }
     ]
 
-    for (i = 0; i < trivia.length; i++) {
-        randomChoices = randomizeArray(trivia[i].choices);
-        questionHTML +=
-        `<div id="question_${i}" class="questions-group">
-            <div id="answer_${i}" class="answerSheet">
-                ${trivia[i].answer}
-            </div>
-            <div id="image_${i}" class="imageSheet">
-                ${trivia[i].image}
-            </div>
-			<div class="questionText">
-			    ${trivia[i].question}
-			</div>
-			<div class="buttons"> 
-				<button class="choiceButton">${trivia[i].choices[0]}</button>
-				<button class="choiceButton">${trivia[i].choices[1]}</button>
-				<button class="choiceButton">${trivia[i].choices[2]}</button>
-				<button class="choiceButton">${trivia[i].choices[3]}</button>
-			</div>
-            <div class="questionCounter">
-                Question ${questionCounter} out of 8
-            </div>
-		</div>`
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+    return array;
     }
 
-    getTriviaPage.innerHTML = questionHTML;
-    getTimer.innerHTML = "Time Remaining: 10 seconds";
+    function setHTML() { 
+        var questionHTML='';
+        for (i = 0; i < trivia.length; i++) {
+            shuffleArray(trivia[i].choices);
+            questionHTML +=
+            `<div id="question_${i}" class="questions-group">
+                <div id="answer_${i}" class="answerSheet">
+                    ${trivia[i].answer}
+                </div>
+                <div id="image_${i}" class="imageSheet">
+                    ${trivia[i].image}
+                </div>
+                <div class="questionText">
+                    ${trivia[i].question}
+                </div>
+                <div class="buttons"> 
+                    <button class="choiceButton">${trivia[i].choices[0]}</button>
+                    <button class="choiceButton">${trivia[i].choices[1]}</button>
+                    <button class="choiceButton">${trivia[i].choices[2]}</button>
+                    <button class="choiceButton">${trivia[i].choices[3]}</button>
+                </div>
+                <div class="questionCounter">
+                    Question ${questionCounter} out of 8
+                </div>
+            </div>`
+        }
+    return questionHTML;
+    }
 
     function run() {
         clearInterval(intervalId);
@@ -146,17 +156,6 @@ $(document).ready(function() {
         number = 10;
         getTimer.innerHTML = "Time Remaining: " + number + " seconds";
     }
-
-    function startGame () {
-        hideAllQuestions();
-        getTimer.style.display = "block";
-        getStartPage.style.display = "none";
-        getTriviaPage.style.display = "block";
-        $(".questionCounter").html(`Question ${questionCounter} out of 8`);
-        document.getElementById("question_0").style.display = "block";
-        run();
-        intervalId;
-    };
 
     function hideAllQuestions() {
         for (i=0; i<trivia.length; i++) {
@@ -223,32 +222,47 @@ $(document).ready(function() {
         startGame();
     }
 
+    function startGame () {
+        shuffleArray(trivia);
+        var gameHTML= setHTML();
+        getTriviaPage.innerHTML = gameHTML;
+        getTimer.innerHTML = "Time Remaining: 10 seconds";
+        hideAllQuestions();
+        getTimer.style.display = "block";
+        getStartPage.style.display = "none";
+        getTriviaPage.style.display = "block";
+        $(".questionCounter").html(`Question ${questionCounter} out of 8`);
+        document.getElementById("question_0").style.display = "block";
+        run();
+        intervalId;
+        addQuestionClickEvents();
+    };
+
+    function addQuestionClickEvents() {
+        $('.questions-group').on('click', 'button', function() {
+            var userPickedAnswer = $(this).text();
+            rightanswer = $('#answer_' + questionNumber).text().trim();            
+            $(".questionCounter").html(`Question ${questionCounter} out of 8`);
+            if (userPickedAnswer === rightanswer) {
+                correctAnswers++;
+                insertImage();
+                getTriviaPage.style.display = "none";
+                getRightAnswerPage.style.display = "block";
+                setTimeout(function() {nextQuestion(questionNumber)}, 2000);
+            }
+            if (userPickedAnswer != rightanswer) {
+                incorrectAnswers++;
+                insertImage();
+                getTriviaPage.style.display = "none";
+                getWrongAnswerPage.style.display = "block";
+                getWrongAnswerPage.querySelector(".correctAnswer").innerHTML = rightanswer;
+                setTimeout(function() {nextQuestion(questionNumber)}, 2000);
+            }
+        });
+    }
     getStartButton.addEventListener("click", startGame);
 
-    $('.questions-group').on('click', 'button', function() {
-        var userPickedAnswer = $(this).text();
-        rightanswer = $('#answer_' + questionNumber).text().trim();            $(".questionCounter").html(`Question ${questionCounter} out of 8`);
-     
-        if (userPickedAnswer === rightanswer) {
-            correctAnswers++;
-            insertImage();
-            getTriviaPage.style.display = "none";
-            getRightAnswerPage.style.display = "block";
-            setTimeout(function() {nextQuestion(questionNumber)}, 2000);
-        }
-
-        if (userPickedAnswer != rightanswer) {
-            incorrectAnswers++;
-            insertImage();
-            getTriviaPage.style.display = "none";
-            getWrongAnswerPage.style.display = "block";
-            getWrongAnswerPage.querySelector(".correctAnswer").innerHTML = rightanswer;
-            setTimeout(function() {nextQuestion(questionNumber)}, 2000);
-        }
-    });
-
     getResetButton.addEventListener("click", resetGame);
-
 });
 
 
